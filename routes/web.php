@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -8,15 +9,21 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TodoController::class, 'index']);
 
-Auth::routes();
+Route::get('create', [TodoController::class, 'create']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('details/{todo}', [TodoController::class, 'details']);
+
+Route::get('edit/{todo}', [TodoController::class, 'edit']);
+
+Route::post('update/{todo}', [TodoController::class, 'update']);
+
+Route::get('delete/{todo}', [TodoController::class, 'delete']);
+
+Route::post('store-data', [TodoController::class, 'store']);
