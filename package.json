@@ -1,4 +1,5 @@
 {
+    "author": "XuanNA",
     "private": true,
     "scripts": {
         "dev": "vite",
